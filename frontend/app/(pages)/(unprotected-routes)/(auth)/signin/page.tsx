@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { useForm } from 'react-hook-form';
 import { LoginSchema } from '@/lib/zodSchemas';
 import useAuthStore, { FormType } from '@/store/useAuthStore';
@@ -30,7 +31,6 @@ function Page() {
       password: '',
     },
   });
-  console.log('🚀 ~ Page ~ errors:', errors);
 
   async function onSubmit(data: FormType) {
     await signIn(data);
