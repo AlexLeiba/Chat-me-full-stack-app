@@ -113,7 +113,7 @@ function Sidebar() {
           <div className='flex lg:items-center md:items-center justify-between lg:flex-row md:flex-col sm:flex-col  items-start '>
             <h4>Contacts</h4>
 
-            <p>Online: {onlineUsers.length - 1}</p>
+            <p>Online: {onlineUsers.length}</p>
           </div>
         )}
         <Spacer size={2} />

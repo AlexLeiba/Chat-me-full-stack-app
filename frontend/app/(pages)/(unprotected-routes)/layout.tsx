@@ -1,49 +1,36 @@
 'use client';
-import localFont from 'next/font/local';
 import '../../globals.css';
-import { Spacer } from '@/components/UI/spacer/spacer';
 import { Header } from '@/components/Header/Header';
+import { Spacer } from '@/components/UI/spacer/spacer';
 import { Footer } from '@/components/Footer/Footer';
-import { Toaster } from 'react-hot-toast';
-import useGlobalThemeStore from '@/store/useThemeStore';
-
-const geistSans = localFont({
-  src: '../../fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: '../../fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
+import useAuthStore from '@/store/useAuthStore';
+import { useEffect } from 'react';
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { globalTheme } = useGlobalThemeStore();
+  const { checkAuth } = useAuthStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
   return (
-    <html data-theme={globalTheme} lang='en'>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Toaster />
-        <div className='flex flex-col min-h-screen'>
-          <header>
-            <Header type='auth' />
-          </header>
+    <>
+      <div className='flex flex-col min-h-screen'>
+        <header>
+          <Header type='dashboard' />
+        </header>
 
-          <Spacer size={14} />
+        <Spacer size={14} />
 
-          <main className='flex-grow'>{children}</main>
+        <main className='flex-grow'>{children}</main>
 
-          <footer>
-            <Footer type='auth' />
-          </footer>
-        </div>
-      </body>
-    </html>
+        <footer>
+          <Footer type='dashboard' />
+        </footer>
+      </div>
+    </>
   );
 }
