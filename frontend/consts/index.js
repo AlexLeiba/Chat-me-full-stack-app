@@ -1,4 +1,5 @@
 export const THEMES_LIST = [
+  'black',
   'light',
   'dark',
   'cupcake',
@@ -17,7 +18,6 @@ export const THEMES_LIST = [
   'pastel',
   'fantasy',
   'wireframe',
-  'black',
   'luxury',
   'dracula',
   'cmyk',
@@ -43,7 +43,7 @@ export const PREVIEW_THEME_MESSAGES = [
   },
   {
     id: '2',
-    message: 'I am doing well, thank you for asking.',
+    message: 'I am doing well, thank you for asking. You?',
     sender: 'Jane Doe',
     createdAt: '2023-01-02T00:00:00.000Z',
     isSent: false,

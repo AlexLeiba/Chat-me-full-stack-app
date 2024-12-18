@@ -1,13 +1,13 @@
 'use client';
 import { Col, Container, Row } from '@/components/UI/Grid';
-import useGlobalTeamStore from '@/store/useThemeStore';
+// import useGlobalTeamStore from '@/store/useThemeStore';
 import React from 'react';
 import { THEMES_LIST } from '../../../../consts/index';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import ReviewChatThemeSection from '@/components/PreviewChatThemeSection/ReviewChatThemeSection';
 
 function Page() {
-  const { globalTheme, setGlobalTheme } = useGlobalTeamStore();
+  // const { globalTheme, setGlobalTheme } = useGlobalTeamStore();
   return (
     <Container>
       <Row>
@@ -24,7 +24,8 @@ function Page() {
           <Row>
             {THEMES_LIST.map((themeListed, index) => (
               <Col lg={4} md={2} sm={2} key={index}>
-                <button
+                <p>{themeListed}</p>
+                {/* <button
                   onClick={() => setGlobalTheme(themeListed)}
                   className={`${
                     globalTheme === themeListed
@@ -46,7 +47,7 @@ function Page() {
                   <span className='text-base-content/100 font-medium truncate w-full text-center'>
                     {themeListed.charAt(0).toUpperCase() + themeListed.slice(1)}
                   </span>
-                </button>
+                </button> */}
               </Col>
             ))}
           </Row>
