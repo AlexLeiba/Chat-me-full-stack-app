@@ -52,8 +52,7 @@ type Store = {
   onlineUsers: string[];
 };
 
-// const BACKEND_BASE_URL = 'http://localhost:5001/';
-const BACKEND_BASE_URL = 'https://chat-me-full-stack-app.onrender.com/';
+const BACKEND_BASE_URL = 'http://localhost:5001/';
 
 export type FormType = Zod.infer<typeof SignupSchema>;
 
@@ -187,11 +186,11 @@ const useAuthStore: UseBoundStore<StoreApi<Store>> = create(
         } catch (error: any) {
           console.log('🚀 \n\n ~ logout: ~ error:', error);
 
-          set({ authUser: null, error: error.response.data.message });
+          set({ authUser: null });
 
-          if (error.response.data.message) {
+          if (error.response?.data?.message) {
             toast.error(error.response.data.message);
-          } else if (error.response.statusText) {
+          } else if (error?.response?.statusText) {
             toast.error(error.response.statusText);
           } else if (error.message) {
             toast.error(error.message);

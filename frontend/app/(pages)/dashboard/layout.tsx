@@ -1,5 +1,4 @@
 'use client';
-import '../../globals.css';
 import { Header } from '@/components/Header/Header';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Footer } from '@/components/Footer/Footer';

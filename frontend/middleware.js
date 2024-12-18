@@ -32,11 +32,5 @@ export function middleware(request) {
 
 // Configure middleware to match specific routes
 export const config = {
-  matcher: [
-    '/signin',
-    '/signup',
-    '/dashboard/:path*',
-    '/profile/:path*',
-    '/settings/:path*',
-  ], // Define routes the middleware applies to
+  matcher: ['/signin', '/signup', '/dashboard/:path*'], // Define routes the middleware applies to
 };

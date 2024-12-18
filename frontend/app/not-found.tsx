@@ -6,18 +6,16 @@ import Link from 'next/link';
 
 async function Page404() {
   return (
-    <Container className='flex min-h-[100vh] items-center'>
+    <Container className='flex  items-center'>
       <Row className='items-center'>
-        <Col lg={6}></Col>
-
-        <Col lg={6}>
-          <h1>
+        <Col lg={6} lgOffset={3}>
+          <h1 className='text-center'>
             Page 404
             <br />
             we can`t find the page you are looking for
           </h1>
 
-          <Spacer size={12} md={6} sm={6} />
+          <Spacer size={24} />
           <Link href='/'>
             <button className='btn w-full'>Go back to home page</button>
           </Link>

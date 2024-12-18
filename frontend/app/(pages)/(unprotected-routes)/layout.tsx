@@ -1,5 +1,4 @@
 'use client';
-import '../../globals.css';
 import { Header } from '@/components/Header/Header';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Footer } from '@/components/Footer/Footer';
@@ -20,7 +19,7 @@ export default function RootLayout({
     <>
       <div className='flex flex-col min-h-screen'>
         <header>
-          <Header type='dashboard' />
+          <Header type='auth' />
         </header>
 
         <Spacer size={14} />
@@ -28,7 +27,7 @@ export default function RootLayout({
         <main className='flex-grow'>{children}</main>
 
         <footer>
-          <Footer type='dashboard' />
+          <Footer type='auth' />
         </footer>
       </div>
     </>

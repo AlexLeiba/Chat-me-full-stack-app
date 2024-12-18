@@ -1,4 +1,3 @@
-// lib/axiosInstance.js
 import axios from 'axios';
 // import { cookies } from 'next/headers'; // For server-side cookie handling
 

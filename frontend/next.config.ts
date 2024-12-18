@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: true,
   outputFileTracing: true, // Enable output tracing for serverless functions
-  swcMinify: true,
+
   async redirects() {
     return [
       {

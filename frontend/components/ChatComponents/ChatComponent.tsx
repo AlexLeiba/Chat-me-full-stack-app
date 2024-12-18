@@ -44,7 +44,7 @@ function ChatComponent() {
         block: 'nearest',
       });
     }
-  }, [messages]);
+  }, [messages, subscribeToMessages]);
 
   if (!selectedUser) return null;
 
