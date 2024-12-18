@@ -1,4 +1,3 @@
-'use client';
 import { Col, Container, Row } from '@/components/UI/Grid';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import React from 'react';
