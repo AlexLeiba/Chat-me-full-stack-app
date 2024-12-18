@@ -1,8 +1,7 @@
 'use client';
 import React from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginSchema } from '@/lib/zodSchemas';
 import useAuthStore, { FormType } from '@/store/useAuthStore';
 import { Container, Row, Col } from '@/components/UI/Grid';
