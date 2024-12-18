@@ -10,8 +10,6 @@ import useGlobalTeamStore from '@/store/useThemeStore';
 import useAuthStore from '@/store/useAuthStore';
 import { useEffect } from 'react';
 
-// import NavBar from '@/components/NavBar/NavBar';
-
 const geistSans = localFont({
   src: '../../fonts/GeistVF.woff',
   variable: '--font-geist-sans',

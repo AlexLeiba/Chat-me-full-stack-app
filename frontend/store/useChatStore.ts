@@ -87,9 +87,6 @@ const useChatStore = create<ChatStoreType>((set, get) => ({
         `/messages/send/${selectedUserId}`,
         messageObj
       );
-      console.log('🚀 ~ response:', response);
-      const messdata = [...messages, response.data];
-      console.log('🚀 ~ \n\n\n\n sendMessage: ~ messdata:', messdata);
 
       set({ messages: [...messages, response.data] });
     } catch (error: any) {
@@ -108,7 +105,6 @@ const useChatStore = create<ChatStoreType>((set, get) => ({
     set({ isGetUsersLoading: true });
     try {
       const response = await axiosInstance.get('/messages/users');
-      console.log('🚀 ~ getUsers: ~ response:\n\n\n', response);
 
       set({ users: response.data, isGetUsersLoading: false });
     } catch (error: any) {
@@ -170,10 +166,6 @@ const useChatStore = create<ChatStoreType>((set, get) => ({
   },
   // SUBSCRIBE TO MESSAGES WITH SOCKET
   subscribeToNewUnreadNotificationMessage: () => {
-    console.log(
-      '🚀 ~ subscribeToNewUnreadNotificationMessage',
-      'will trigger only when the user receives a new message'
-    );
     const { getUsers } = get();
 
     const socket = useAuthStore.getState().socked;
@@ -185,10 +177,6 @@ const useChatStore = create<ChatStoreType>((set, get) => ({
       (usersWithSentUnreadMessages: MessagesType) => {
         if (usersWithSentUnreadMessages.senderId) {
           if (usersWithSentUnreadMessages.isSelectedUserToChatWith) {
-            console.log(
-              '🚀 ~ useChatStore ~ usersWithSentUnreadMessages.isSelectedUserToChatWith:',
-              usersWithSentUnreadMessages.isSelectedUserToChatWith
-            );
             return; //if both user are already in conversation DONT GET NOTIFICATION
           }
 

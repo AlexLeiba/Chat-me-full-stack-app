@@ -83,7 +83,6 @@ const useAuthStore: UseBoundStore<StoreApi<Store>> = create(
 
           // connect socket
           get().connectSocket();
-          console.log('🚀 ~ checkAuth: ~ response:', get());
         } catch (error: any) {
           console.log('🚀 \n\n ~ checkAuth: ~ error:', error);
           set({ authUser: null, error: error.message });
@@ -97,7 +96,6 @@ const useAuthStore: UseBoundStore<StoreApi<Store>> = create(
       signUp: async (data: FormType) => {
         set({ isLoadingSignUp: true });
 
-        console.log('🚀 ~ signUp: ~ data:', data);
         try {
           const response = await axiosInstance.post('/auth/signup', data);
           set({ authUser: response.data, isLoadingSignUp: true });
@@ -120,7 +118,6 @@ const useAuthStore: UseBoundStore<StoreApi<Store>> = create(
       signIn: async (data: FormType) => {
         set({ isLoadingSignIn: true });
 
-        console.log('🚀 ~ signUp: ~ data:', data);
         try {
           const response = await axiosInstance.post('/auth/signin', data);
           set({ authUser: response.data, isLoadingSignIn: false });
@@ -159,7 +156,7 @@ const useAuthStore: UseBoundStore<StoreApi<Store>> = create(
         //GETTING ONLINE USERS IDS
         socket.on('onlineUsers', (userIds) => {
           //listening for this vents to be emitted from the backend
-          console.log('🚀 ~ \n\n\n\n\n =>>>onlineUsers:', userIds);
+
           set({ onlineUsers: userIds });
         });
       },
@@ -207,7 +204,6 @@ const useAuthStore: UseBoundStore<StoreApi<Store>> = create(
       updateProfile: async ({ profilePicture }: { profilePicture: string }) => {
         set({ isLoadingUpdateProfile: true });
 
-        console.log('🚀 ~ updateProfile: ~ data:', profilePicture);
         try {
           const response = await axiosInstance.put('/auth/update-profile', {
             profilePicture,
@@ -247,7 +243,6 @@ const useAuthStore: UseBoundStore<StoreApi<Store>> = create(
             fullName,
           });
 
-          console.log('🚀 ~ updateFullName: ~ response:', response);
           set({ loadingUpdateFullName: false, authUser: response.data });
 
           toast.success('Full name updated successfully');

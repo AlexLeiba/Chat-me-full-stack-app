@@ -5,7 +5,6 @@ import '../../globals.css';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
-// import NavBar from '@/components/NavBar/NavBar';
 import { Toaster } from 'react-hot-toast';
 import useGlobalThemeStore from '@/store/useThemeStore';
 
@@ -32,7 +31,6 @@ export default function RootLayout({
 }>) {
   const { globalTheme } = useGlobalThemeStore();
   return (
-    // <AuthProvider>
     <html data-theme={globalTheme} lang='en'>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -53,6 +51,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-    // </AuthProvider>
   );
 }
