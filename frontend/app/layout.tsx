@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 // import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
@@ -6,9 +6,9 @@ import { Toaster } from 'react-hot-toast';
 import { Header } from '@/components/Header/Header';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Footer } from '@/components/Footer/Footer';
-import useGlobalTeamStore from '@/store/useThemeStore';
-import useAuthStore from '@/store/useAuthStore';
-import { useEffect } from 'react';
+// import useGlobalTeamStore from '@/store/useThemeStore';
+// import useAuthStore from '@/store/useAuthStore';
+// import { useEffect } from 'react';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -31,14 +31,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { globalTheme } = useGlobalTeamStore();
-  const { checkAuth } = useAuthStore();
+  // const { globalTheme } = useGlobalTeamStore();
+  // const { checkAuth } = useAuthStore();
 
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
+  // useEffect(() => {
+  //   checkAuth();
+  // }, [checkAuth]);
+
+  // data-theme={globalTheme}
   return (
-    <html lang='en' data-theme={globalTheme}>
+    <html lang='en'>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-base-300`}
       >
