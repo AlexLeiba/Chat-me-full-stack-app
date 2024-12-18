@@ -6,8 +6,6 @@ import { Header } from '@/components/Header/Header';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Footer } from '@/components/Footer/Footer';
 import useGlobalTeamStore from '@/store/useThemeStore';
-import useAuthStore from '@/store/useAuthStore';
-import { useEffect } from 'react';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -26,11 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const { globalTheme } = useGlobalTeamStore();
-  const { checkAuth } = useAuthStore();
 
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
   return (
     <html lang='en' data-theme={globalTheme}>
       <body

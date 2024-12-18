@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['res.cloudinary.com', 'randomuser.me'], // Add the hostname here
   },
+  reactStrictMode: true,
+  outputFileTracing: true, // Enable output tracing for serverless functions
+  swcMinify: true,
   async redirects() {
     return [
       {
