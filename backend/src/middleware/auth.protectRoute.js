@@ -7,9 +7,11 @@ export const protectRoute = async (req, res, next) => {
   const token = req.cookies[CHAT_ME_TOKEN];
 
   if (!token) {
-    return res.cookie('chat-me-token', '', {
-      maxAge: 0, //expire immediately,
-    });
+    console.log('🚀 ~ protectRoute ~ NO token:');
+    // return res.cookie('chat-me-token', '', {
+    //   maxAge: 0, //expire immediately,
+    // });
+    res.status(401).json({ message: 'You are not authorized' });
   }
 
   try {
