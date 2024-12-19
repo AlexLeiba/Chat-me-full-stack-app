@@ -18,5 +18,6 @@ export const generateToken = (userPayload, res) => {
     // httpOnly: true, //preventing cookie from being accessed by client side js, prevents XSS attacks (cross site scripting attacks)
     // sameSite: 'strict', //CSRF protection, request forgery attacks
     // secure: process.env.NODE_ENV !== 'development', // cookie only sent over HTTPS not HTTP
+    sameSite: 'lax',
   });
 };
