@@ -23,7 +23,8 @@ export function middleware(request) {
     !token &&
     dashboardPages.some((protectedPath) => pathname.startsWith(protectedPath))
   ) {
-    return NextResponse.redirect(new URL('/signin', request.url)); // Redirect to login
+    console.log('redirecting', 'no token');
+    // return NextResponse.redirect(new URL('/signin', request.url)); // Redirect to login
   }
 
   // Allow the request to proceed
