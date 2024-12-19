@@ -189,8 +189,9 @@ const useChatStore = create<ChatStoreType>((set, get) => ({
   },
   unsubscribeToNewUnreadNotificationMessages: () => {
     const socket = useAuthStore.getState().socked;
-
-    socket.off('newUnreadNotificationMessage'); //unsubscribe to messages when the user is not selected
+    if (socket) {
+      socket.off('newUnreadNotificationMessage'); //unsubscribe to messages when the user is not selected
+    }
   },
 
   handleSelectUserToChatWith: async (userIdToChatWith: string) => {
