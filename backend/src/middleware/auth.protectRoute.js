@@ -5,17 +5,12 @@ export const protectRoute = async (req, res, next) => {
   const CHAT_ME_TOKEN = 'chat-me-token';
 
   const token = req.cookies[CHAT_ME_TOKEN];
-  console.log('🚀 ~ protectRoute ~ token:', token);
-
-  if (!token) {
-    console.log('🚀 ~ protectRoute ~ NO token:');
-    // return res.cookie('chat-me-token', '', {
-    //   maxAge: 0, //expire immediately,
-    // });
-    res.status(401).json({ message: 'You are not authorized', token });
-  }
 
   try {
+    if (!token) {
+      throw new Error('You are not authorized');
+    }
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET); // decoded is user value based on token data
 
     if (!decoded) {

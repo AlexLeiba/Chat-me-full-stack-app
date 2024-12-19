@@ -88,7 +88,14 @@ const useAuthStore: UseBoundStore<StoreApi<Store>> = create(
           get().connectSocket();
         } catch (error: any) {
           console.log('🚀 \n\n ~ checkAuth: ~ error:', error);
-          set({ authUser: null, error: error.message });
+          set({ authUser: null });
+          if (error.response?.data?.message) {
+            toast.error(error.response.data.message);
+          } else if (error?.response?.statusText) {
+            toast.error(error.response.statusText);
+          } else if (error.message) {
+            toast.error(error.message);
+          }
         } finally {
           set({ isLoadingCheckAuth: false });
         }
