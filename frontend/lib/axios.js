@@ -2,8 +2,8 @@ import axios from 'axios';
 // import { cookies } from 'next/headers'; // For server-side cookie handling
 
 const axiosInstance = axios.create({
-  // baseURL: 'https://chat-me-full-stack-app-ed5j.vercel.app', // production
-  baseURL: 'http://localhost:5001/api', //local
+  baseURL: 'https://chat-me-full-stack-app.onrender.com', // production
+  // baseURL: 'http://localhost:5001/api', //local
   withCredentials: true, // Ensures cookies are included in requests
 });
 
