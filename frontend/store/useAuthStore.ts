@@ -54,7 +54,7 @@ type Store = {
 
 // const BACKEND_BASE_URL = 'http://localhost:5001/';
 
-const BACKEND_BASE_URL = 'https://chat-me-full-stack-app.vercel.app/';
+const BACKEND_BASE_URL = 'https://chat-me-full-stack-app-ed5j.vercel.app/';
 
 export type FormType = Zod.infer<typeof SignupSchema>;
 
