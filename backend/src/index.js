@@ -26,9 +26,15 @@ app.use(express.json()); // for parsing application/json -> req.body
 app.use('/api/messages', messageRoutes);
 app.use('/api/auth', authRoutes);
 
-const PORT = process.env.PORT || 5002;
-
-server.listen(PORT || 5002, () => {
-  console.log('Server is running on port:', PORT);
+export const serverConnection = (req, res) => {
+  res.send('Hello World!');
   connectDB();
-});
+  app(req, res);
+};
+
+// const PORT = process.env.PORT || 5002;
+
+// server.listen(PORT || 5002, () => {
+//   console.log('Server is running on port:', PORT);
+//   connectDB();
+// });
