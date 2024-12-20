@@ -17,7 +17,7 @@ import { connectDB } from './lib/db.js';
 
 dotenv.config();
 
-app.use(cors({ origin: process.env.BASE_URL, credentials: true }));
+app.use(cors({ origin: process.env.BASE_URL, credentials: true })); //TODO: ask gpt what it does: credentials: true
 
 app.use(cookieParser()); // for parsing cookies, to be able to access the token from req.cookies and see the encoded user data which was stored in token
 
