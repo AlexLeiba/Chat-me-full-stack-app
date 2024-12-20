@@ -25,7 +25,10 @@ dotenv.config();
 app.use(
   cors(
     {
-      origin: [process.env.BASE_URL, 'http://localhost:3000'],
+      origin: [
+        'https://chat-me-full-stack-app.vercel.app',
+        'http://localhost:3000',
+      ],
       credentials: true,
     }
 
