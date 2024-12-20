@@ -206,6 +206,15 @@ export async function updateProfileFullName(req, res) {
 
 export async function checkAuth(req, res) {
   try {
+    // app.get('/api/auth/check', (req, res) => {
+    //   res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
+    //   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    //   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    //   res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+    //   // Your logic here
+    //   res.status(200).json({ message: 'Success' });
+    // });
     res.status(200).json(req.user);
   } catch (error) {
     console.log('🚀 \n\n ~ checkAuth ~ error:', error);

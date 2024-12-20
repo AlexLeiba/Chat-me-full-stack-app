@@ -17,26 +17,29 @@ import { connectDB } from './lib/db.js';
 
 dotenv.config();
 
-const allowedOrigins = [
-  'http://localhost:3000', // For local development
-  'https://chat-me-full-stack-app.vercel.app', // Deployed frontend
-];
+// const allowedOrigins = [
+//   'http://localhost:3000', // For local development
+//   'https://chat-me-full-stack-app.vercel.app', // Deployed frontend
+// ];
 
 app.use(
   cors(
-    // { origin: process.env.BASE_URL, credentials: true },
-
     {
-      origin: (origin, callback) => {
-        // Allow requests with no origin (e.g., mobile apps or curl)
-        if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
-      },
+      origin: [process.env.BASE_URL, 'http://localhost:3000'],
       credentials: true,
     }
+
+    // {
+    //   origin: (origin, callback) => {
+    //     // Allow requests with no origin (e.g., mobile apps or curl)
+    //     if (!origin || allowedOrigins.includes(origin)) {
+    //       callback(null, true);
+    //     } else {
+    //       callback(new Error('Not allowed by CORS'));
+    //     }
+    //   },
+    //   credentials: true,
+    // }
   )
 ); //TODO: ask gpt what it does: credentials: true
 
