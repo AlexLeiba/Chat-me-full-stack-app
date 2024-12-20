@@ -14,12 +14,25 @@ export default function RootLayout({
   const router = useRouter();
   const { checkAuth } = useAuthStore();
 
+  function getCookie(name: string) {
+    const cookieArr = document.cookie.split(';');
+
+    // Loop through the cookies to find the one you're looking for
+    for (let i = 0; i < cookieArr.length; i++) {
+      const cookie = cookieArr[i].trim();
+      // If cookie name matches the one we're looking for
+      if (cookie.startsWith(name + '=')) {
+        return cookie.substring(name.length + 1); // Return the cookie value
+      }
+    }
+    return null; // Return null if cookie is not found
+  }
+
   useEffect(() => {
     checkAuth();
 
-    const token = document.cookie
-      .split(';')
-      .find((cookie) => cookie.trim().startsWith('chat-me-token='));
+    const token = getCookie('chat-me-token');
+
     console.log('🚀 ~ useEffect ~ token:=>>>>', token);
 
     if (token) {
