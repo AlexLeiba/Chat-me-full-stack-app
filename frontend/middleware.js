@@ -6,27 +6,27 @@ export function middleware(request) {
   const token = request.cookies.get('chat-me-token'); // Retrieve the token from cookies
   console.log('🚀 ~ middleware ~ token:', token);
 
-  //   const authPages = ['/signin', '/signup']; // Routes for auth pages
-  //   const dashboardPages = [
-  //     '/dashboard',
-  //     '/dashboard/profile',
-  //     '/dashboard/settings',
-  //   ]; // Routes for protected pages
+  const authPages = ['/signin', '/signup']; // Routes for auth pages
+  const dashboardPages = [
+    '/dashboard',
+    '/dashboard/profile',
+    '/dashboard/settings',
+  ]; // Routes for protected pages
 
-  //   const { pathname } = request.nextUrl;
+  const { pathname } = request.nextUrl;
 
-  //   // 1. Redirect logged-in users away from auth pages
-  //   if (token && authPages.includes(pathname)) {
-  //     return NextResponse.redirect(new URL('/dashboard', request.url)); // Redirect to dashboard
-  //   }
+  // 1. Redirect logged-in users away from auth pages
+  if (token && authPages.includes(pathname)) {
+    return NextResponse.redirect(new URL('/dashboard', request.url)); // Redirect to dashboard
+  }
 
-  //   // 2. Redirect guests (no token) away from protected pages
-  //   if (
-  //     !token &&
-  //     dashboardPages.some((protectedPath) => pathname.startsWith(protectedPath))
-  //   ) {
-  //     return NextResponse.redirect(new URL('/signin', request.url)); // Redirect to login
-  //   }
+  // 2. Redirect guests (no token) away from protected pages
+  if (
+    !token &&
+    dashboardPages.some((protectedPath) => pathname.startsWith(protectedPath))
+  ) {
+    return NextResponse.redirect(new URL('/signin', request.url)); // Redirect to login
+  }
 
   // Allow the request to proceed
   return NextResponse.next();
