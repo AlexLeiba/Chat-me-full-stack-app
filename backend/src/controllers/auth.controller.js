@@ -96,7 +96,7 @@ export async function logout({ req, res }) {
     res.cookie('chat-me-token', '', {
       maxAge: 0, //expire immediately,
     });
-    req.user = null;
+    req.user = {};
 
     res.status(200).json({ message: 'Logged out successfully' });
   } catch (error) {
