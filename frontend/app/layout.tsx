@@ -6,6 +6,9 @@ import { Header } from '@/components/Header/Header';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Footer } from '@/components/Footer/Footer';
 import useGlobalTeamStore from '@/store/useThemeStore';
+import useAuthStore from '@/store/useAuthStore';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 // const geistSans = localFont({
 //   src: './fonts/GeistVF.woff',
@@ -23,7 +26,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
   const { globalTheme } = useGlobalTeamStore();
+
+  const { checkAuth, authUser, isLoadingSignIn, isLoadingSignUp } =
+    useAuthStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  useEffect(() => {
+    if (
+      (!isLoadingSignIn && authUser?._id) ||
+      (!isLoadingSignUp && authUser?._id)
+    ) {
+      router.push('/dashboard');
+    }
+  }, [authUser, router, isLoadingSignIn, isLoadingSignUp]);
 
   return (
     <html lang='en' data-theme={globalTheme}>
