@@ -37,6 +37,7 @@ export default function RootLayout({
   }, [checkAuth]);
 
   useEffect(() => {
+    console.log('🚀 ~ RootLayout ~ authUser:', authUser);
     if (
       (!isLoadingSignIn && authUser?._id) ||
       (!isLoadingSignUp && authUser?._id)
