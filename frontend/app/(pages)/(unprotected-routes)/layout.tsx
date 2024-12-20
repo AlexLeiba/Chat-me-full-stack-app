@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 import { Header } from '@/components/Header/Header';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Footer } from '@/components/Footer/Footer';
