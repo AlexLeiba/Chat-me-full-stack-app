@@ -24,7 +24,7 @@ export default function Home() {
     if (!authUser?._id && !isLoadingCheckAuth) {
       router.push('/signin');
     }
-  }, [authUser, isLoadingCheckAuth, router]);
+  }, [isLoadingCheckAuth]);
 
   return (
     <Container spacing='none'>

@@ -12,10 +12,8 @@ import { Input } from '@/components/UI/Input/Input';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Button } from '@/components/UI/Button/Button';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 function Page() {
-  const router = useRouter();
   const { isLoadingSignIn, signIn } = useAuthStore();
 
   const {
@@ -33,8 +31,6 @@ function Page() {
 
   async function onSubmit(data: FormType) {
     await signIn(data);
-
-    router.push('/dashboard');
   }
   return (
     <Container>
