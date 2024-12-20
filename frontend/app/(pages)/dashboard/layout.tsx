@@ -4,17 +4,29 @@ import { Spacer } from '@/components/UI/spacer/spacer';
 import { Footer } from '@/components/Footer/Footer';
 import useAuthStore from '@/store/useAuthStore';
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
   const { checkAuth } = useAuthStore();
 
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
+
+    const token = document.cookie
+      .split(';')
+      .find((cookie) => cookie.trim().startsWith('chat-me-token='));
+    console.log('🚀 ~ useEffect ~ token:=>>>>', token);
+
+    if (token) {
+      // If token exists, redirect to dashboard
+      router.push('/dashboard');
+    }
+  }, [checkAuth, router]);
   return (
     <>
       <div className='flex flex-col min-h-screen'>
