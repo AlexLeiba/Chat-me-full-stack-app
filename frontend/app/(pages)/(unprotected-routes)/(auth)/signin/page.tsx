@@ -41,6 +41,7 @@ function Page() {
       // If token exists, redirect to dashboard
       router.push('/dashboard');
     }
+    console.log('🚀 ~ useEffect ~ token:', token);
   }, []);
 
   async function onSubmit(data: FormType) {
