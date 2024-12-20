@@ -5,10 +5,18 @@ import ChatComponent from '@/components/ChatComponents/ChatComponent';
 import NoChatComponent from '@/components/ChatComponents/NoChatComponent';
 import Sidebar from '@/components/ChatComponents/Sidebar';
 import { ChevronRight } from 'lucide-react';
+import useAuthStore from '@/store/useAuthStore';
+import { useEffect } from 'react';
 
 export default function Home() {
   const { selectedUser, slideMenuOnMobile, handleSlideMenuOnMobile } =
     useChatStore();
+
+  const { checkAuth } = useAuthStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   return (
     <Container spacing='none'>
