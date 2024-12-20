@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginSchema } from '@/lib/zodSchemas';
@@ -12,9 +12,11 @@ import { Input } from '@/components/UI/Input/Input';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Button } from '@/components/UI/Button/Button';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 function Page() {
-  const { isLoadingSignIn, signIn } = useAuthStore();
+  const router = useRouter();
+  const { isLoadingSignIn, signIn, authUser } = useAuthStore();
 
   const {
     handleSubmit,
@@ -28,6 +30,18 @@ function Page() {
       password: '',
     },
   });
+
+  const { checkAuth } = useAuthStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  useEffect(() => {
+    if (!isLoadingSignIn && authUser?._id) {
+      router.push('/dashboard');
+    }
+  }, [checkAuth, isLoadingSignIn, authUser, router]);
 
   async function onSubmit(data: FormType) {
     await signIn(data);
