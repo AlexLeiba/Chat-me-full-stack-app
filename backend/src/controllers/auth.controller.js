@@ -93,9 +93,7 @@ export async function login(req, res) {
 }
 export async function logout({ req, res }) {
   try {
-    res.cookie('chat-me-token', '', {
-      maxAge: 0, //expire immediately,
-    });
+    res.clearCookie('chat-me-token');
   } catch (error) {
     console.log('🚀 \n\n ~ logout ~ error:', error);
     res.status(500).json({ message: 'Internal server error on logout' });
