@@ -17,7 +17,28 @@ import { connectDB } from './lib/db.js';
 
 dotenv.config();
 
-app.use(cors({ origin: process.env.BASE_URL, credentials: true })); //TODO: ask gpt what it does: credentials: true
+const allowedOrigins = [
+  'http://localhost:3000', // For local development
+  'https://chat-me-full-stack-app.vercel.app', // Deployed frontend
+];
+
+app.use(
+  cors(
+    // { origin: process.env.BASE_URL, credentials: true },
+
+    {
+      origin: (origin, callback) => {
+        // Allow requests with no origin (e.g., mobile apps or curl)
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
+      credentials: true,
+    }
+  )
+); //TODO: ask gpt what it does: credentials: true
 
 app.use(cookieParser()); // for parsing cookies, to be able to access the token from req.cookies and see the encoded user data which was stored in token
 

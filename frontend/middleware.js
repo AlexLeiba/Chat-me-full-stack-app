@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 // import { NextRequest } from 'next/server';
 
 export function middleware(request) {
+  console.log('Middleware triggered for:', request.nextUrl.pathname);
   const token = request.cookies.get('chat-me-token'); // Retrieve the token from cookies
 
   const authPages = ['/signin', '/signup']; // Routes for auth pages
