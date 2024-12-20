@@ -2,44 +2,30 @@
 import { Header } from '@/components/Header/Header';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Footer } from '@/components/Footer/Footer';
-import useAuthStore from '@/store/useAuthStore';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+// import useAuthStore from '@/store/useAuthStore';
+// import { useEffect } from 'react';
+// import { useRouter } from 'next/navigation';
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const router = useRouter();
-  const { checkAuth } = useAuthStore();
+  // const router = useRouter();
+  // const { checkAuth } = useAuthStore();
 
-  function getCookie(name: string) {
-    const cookieArr = document.cookie.split(';');
+  // useEffect(() => {
+  //   checkAuth();
 
-    // Loop through the cookies to find the one you're looking for
-    for (let i = 0; i < cookieArr.length; i++) {
-      const cookie = cookieArr[i].trim();
-      // If cookie name matches the one we're looking for
-      if (cookie.startsWith(name + '=')) {
-        return cookie.substring(name.length + 1); // Return the cookie value
-      }
-    }
-    return null; // Return null if cookie is not found
-  }
+  //   const token = getCookie('chat-me-token');
 
-  useEffect(() => {
-    checkAuth();
+  //   console.log('🚀 ~ useEffect ~ tokedssn:=>>>>', token);
 
-    const token = getCookie('chat-me-token');
-
-    console.log('🚀 ~ useEffect ~ tokedssn:=>>>>', token);
-
-    if (token) {
-      // If token exists, redirect to dashboard
-      router.push('/dashboard');
-    }
-  }, [checkAuth, router]);
+  //   if (token) {
+  //     // If token exists, redirect to dashboard
+  //     router.push('/dashboard');
+  //   }
+  // }, [checkAuth, router]);
   return (
     <>
       <div className='flex flex-col min-h-screen'>
