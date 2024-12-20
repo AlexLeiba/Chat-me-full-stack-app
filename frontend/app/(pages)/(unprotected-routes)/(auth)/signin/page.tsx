@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginSchema } from '@/lib/zodSchemas';
@@ -31,10 +31,22 @@ function Page() {
     },
   });
 
+  useEffect(() => {
+    // Check if the token exists in cookies
+    const token = document.cookie
+      .split(';')
+      .find((cookie) => cookie.trim().startsWith('chat-me-token='));
+
+    if (token) {
+      // If token exists, redirect to dashboard
+      router.push('/dashboard');
+    }
+  }, []);
+
   async function onSubmit(data: FormType) {
     await signIn(data);
 
-    router.push('/dashboard');
+    // router.push('/dashboard');
   }
   return (
     <Container>
