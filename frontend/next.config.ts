@@ -4,12 +4,12 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: 'standalone', //TODO: ask gpt what it does
 
-  middleware: true,
+  // middleware: true,
   images: {
     domains: ['res.cloudinary.com', 'randomuser.me'], // Add the hostname here
   },
   reactStrictMode: true,
-  outputFileTracing: true, // Enable output tracing for serverless functions
+  // outputFileTracing: true, // Enable output tracing for serverless functions
 
   async redirects() {
     return [
