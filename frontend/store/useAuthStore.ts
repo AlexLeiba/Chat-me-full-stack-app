@@ -181,18 +181,18 @@ const useAuthStore: UseBoundStore<StoreApi<Store>> = create(
       // LOG OUT
       logout: async () => {
         try {
-          localStorage.removeItem('chat-me-session');
           // Parallel Requests: If the two requests are independent and can happen simultaneously, use Promise.all():
-          await Promise.all([
-            axiosInstance.put('/messages/unselect-user-to-chat-with'),
-            axiosInstance.post('/auth/logout'),
-          ]);
 
           set({ authUser: null });
           localStorage.removeItem('chat-me-session');
 
           // disconnect socket
           get().disconnectSocket();
+
+          await Promise.all([
+            axiosInstance.put('/messages/unselect-user-to-chat-with'),
+            axiosInstance.post('/auth/logout'),
+          ]);
         } catch (error: any) {
           console.log('🚀 \n\n ~ logout: ~ error:', error);
 

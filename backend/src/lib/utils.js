@@ -13,10 +13,10 @@ export const generateToken = (userPayload, res) => {
   );
 
   // Create JWT token //
-  res.cookie('chat-me-token', token, {
+  res.cookies.set('chat-me-token', token, {
     maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
     httpOnly: true, //preventing cookie from being accessed by client side js, prevents XSS attacks (cross site scripting attacks)
-    sameSite: 'lax', // CSRF protection, request forgery attacks/None
+    sameSite: 'None', // CSRF protection, request forgery attacks/None
     secure: true, // cookie only sent over HTTPS not HTTP
     // sameSite: 'lax', // TODO: ask gpt what it does
     path: '/', // Set path to '/' to make it available to all routes

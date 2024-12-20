@@ -7,24 +7,16 @@ import Sidebar from '@/components/ChatComponents/Sidebar';
 import { ChevronRight } from 'lucide-react';
 import useAuthStore from '@/store/useAuthStore';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const router = useRouter();
   const { selectedUser, slideMenuOnMobile, handleSlideMenuOnMobile } =
     useChatStore();
 
-  const { checkAuth, authUser, isLoadingCheckAuth } = useAuthStore();
+  const { checkAuth } = useAuthStore();
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
-
-  useEffect(() => {
-    if (!authUser?._id && !isLoadingCheckAuth) {
-      router.push('/signin');
-    }
-  }, [isLoadingCheckAuth]);
 
   return (
     <Container spacing='none'>
