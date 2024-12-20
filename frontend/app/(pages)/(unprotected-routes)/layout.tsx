@@ -2,19 +2,19 @@
 import { Header } from '@/components/Header/Header';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Footer } from '@/components/Footer/Footer';
-// import useAuthStore from '@/store/useAuthStore';
-// import { useEffect } from 'react';
+import useAuthStore from '@/store/useAuthStore';
+import { useEffect } from 'react';
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const { checkAuth } = useAuthStore();
+  const { checkAuth } = useAuthStore();
 
-  // useEffect(() => {
-  //   checkAuth();
-  // }, [checkAuth]);
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
   return (
     <>
       <div className='flex flex-col min-h-screen'>
