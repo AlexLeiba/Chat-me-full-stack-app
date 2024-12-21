@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { SignupSchema } from '@/lib/zodSchemas';
@@ -12,11 +12,11 @@ import { Input } from '@/components/UI/Input/Input';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Button } from '@/components/UI/Button/Button';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 function Page() {
   const router = useRouter();
-  const { isLoadingSignUp, signUp, authUser } = useAuthStore();
+  const { isLoadingSignUp, signUp } = useAuthStore();
   const {
     handleSubmit,
     register,
@@ -30,21 +30,10 @@ function Page() {
     },
   });
 
-  const { checkAuth } = useAuthStore();
-
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
-
-  useEffect(() => {
-    if (!isLoadingSignUp && authUser?._id) {
-      router.push('/dashboard');
-    }
-  }, [checkAuth, isLoadingSignUp, authUser, router]);
-
   async function onSubmit(data: FormType) {
     await signUp(data);
 
+    // If the sign-up request will fail, The middleware will make sure that user can't navigate to dashboard
     router.push('/dashboard');
   }
 

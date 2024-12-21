@@ -26,9 +26,9 @@ app.use(
   cors(
     {
       origin: [
+        process.env.BASE_URL,
         'https://chat-me-full-stack-app.vercel.app',
-        'http://localhost:3000',
-      ],
+      ], // Allow requests from the frontend
       credentials: true,
     }
 

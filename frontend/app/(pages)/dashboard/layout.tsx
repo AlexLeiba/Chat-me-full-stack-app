@@ -1,14 +1,13 @@
 'use client';
 // import localFont from 'next/font/local';
-import './globals.css';
+import '../../globals.css';
 import { Toaster } from 'react-hot-toast';
 import { Header } from '@/components/Header/Header';
 import { Spacer } from '@/components/UI/spacer/spacer';
 import { Footer } from '@/components/Footer/Footer';
 import useGlobalTeamStore from '@/store/useThemeStore';
-import useAuthStore from '@/store/useAuthStore';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import useAuthStore from '@/store/useAuthStore';
 
 // const geistSans = localFont({
 //   src: './fonts/GeistVF.woff',
@@ -26,25 +25,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const router = useRouter();
+  const { checkAuth } = useAuthStore();
   const { globalTheme } = useGlobalTeamStore();
-
-  const { checkAuth, authUser, isLoadingSignIn, isLoadingSignUp } =
-    useAuthStore();
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
-
-  useEffect(() => {
-    console.log('🚀 ~ RootLayout ~ authUser:', authUser);
-    if (
-      (!isLoadingSignIn && authUser?._id) ||
-      (!isLoadingSignUp && authUser?._id)
-    ) {
-      router.push('/dashboard');
-    }
-  }, [authUser, router, isLoadingSignIn, isLoadingSignUp]);
 
   return (
     <html lang='en' data-theme={globalTheme}>

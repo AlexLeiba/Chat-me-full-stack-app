@@ -2,8 +2,8 @@ import axios from 'axios';
 // import { cookies } from 'next/headers'; // For server-side cookie handling
 
 const axiosInstance = axios.create({
-  baseURL: 'https://chat-me-full-stack-app.onrender.com/api', // production
-  // baseURL: 'http://localhost:5001/api', //local
+  // baseURL: 'https://chat-me-full-stack-app.onrender.com/api', // production
+  baseURL: 'http://localhost:5001/api', //local
   withCredentials: true, // Ensures cookies are included in requests
   headers: {
     'Content-Type': 'application/json',

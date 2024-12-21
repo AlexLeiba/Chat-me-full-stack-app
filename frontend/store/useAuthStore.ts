@@ -52,10 +52,10 @@ type Store = {
   onlineUsers: string[];
 };
 
-// const BACKEND_BASE_URL_LOCAL = 'http://localhost:5001/';
+const BACKEND_BASE_URL = 'http://localhost:5001/';
 
 // BACKEND-BASE-URL_PRODUCTION
-const BACKEND_BASE_URL = 'https://chat-me-full-stack-app.onrender.com/';
+// const BACKEND_BASE_URL = 'https://chat-me-full-stack-app.onrender.com/';
 
 export type FormType = Zod.infer<typeof SignupSchema>;
 
@@ -183,16 +183,17 @@ const useAuthStore: UseBoundStore<StoreApi<Store>> = create(
         try {
           // Parallel Requests: If the two requests are independent and can happen simultaneously, use Promise.all():
 
+          await Promise.all([
+            axiosInstance.put('/messages/unselect-user-to-chat-with'),
+            axiosInstance.post('/auth/logout'),
+          ]);
+
+          // Clear local store
           set({ authUser: null });
           localStorage.removeItem('chat-me-session');
 
           // disconnect socket
           get().disconnectSocket();
-
-          await Promise.all([
-            axiosInstance.put('/messages/unselect-user-to-chat-with'),
-            axiosInstance.post('/auth/logout'),
-          ]);
         } catch (error: any) {
           console.log('🚀 \n\n ~ logout: ~ error:', error);
 

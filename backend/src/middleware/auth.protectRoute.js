@@ -8,13 +8,15 @@ export const protectRoute = async (req, res, next) => {
 
   try {
     if (!token) {
-      throw new Error('You are not authorized');
+      return res.cookie('chat-me-token', '', {
+        maxAge: 0, //expire immediately,
+      });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET); // decoded is user value based on token data
 
     if (!decoded) {
-      res.status(401).json({ message: 'You are not authorized' });
+      throw new Error('You are not authorized');
     }
 
     const userFromDB = await UserModel.findById(decoded.id).select(
@@ -22,7 +24,7 @@ export const protectRoute = async (req, res, next) => {
     );
 
     if (!userFromDB) {
-      res.status(401).json({ message: 'You are not authorized' });
+      throw new Error('You are not authorized');
     }
 
     // attach user object to req

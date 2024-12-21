@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginSchema } from '@/lib/zodSchemas';
@@ -15,8 +15,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 function Page() {
+  const { isLoadingSignIn, signIn } = useAuthStore();
   const router = useRouter();
-  const { isLoadingSignIn, signIn, authUser } = useAuthStore();
 
   const {
     handleSubmit,
@@ -31,20 +31,11 @@ function Page() {
     },
   });
 
-  const { checkAuth } = useAuthStore();
-
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
-
-  useEffect(() => {
-    if (!isLoadingSignIn && authUser?._id) {
-      router.push('/dashboard');
-    }
-  }, [checkAuth, isLoadingSignIn, authUser, router]);
-
   async function onSubmit(data: FormType) {
     await signIn(data);
+
+    // If the sign-in request will fail, The middleware will make sure that user can't navigate to dashboard
+    router.push('/dashboard');
   }
   return (
     <Container>
